@@ -3,37 +3,19 @@ import PropTypes from "prop-types";
 
 // #3.1
 class App extends React.Component {
+
   state = {
-    count: 0
+    isLoading: true,
+    movies: []
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false, })
+    }, 6000);
   }
   render() {
-    console.log("i'm rendering")
-    return <div>
-      <h1>The number is :  {this.state.count}</h1>
-      <button onClick={this.add}>add</button>
-      {/*this.add() : 즉시 실행 , this.add  : 클릭했을때만 실행  */}
-      <button onClick={this.minus}>minus</button>
-    </div>
-  }
-
-  add = () => {
-    console.log("Add");
-    // this.setState({ count: this.state.count + 1 })
-    this.setState(current => ({ count: current.count + 1 }))
-
-  };
-  minus = () => {
-    console.log("minus");
-    this.setState(current => ({ count: current.count - 1 }))
-  };
-  componentDidMount() {
-    console.log("component rendered")
-  }
-  componentDidUpdate() {
-    console.log(" i just updated ")
-  }
-  componentWillUnmount() {
-    console.log("good bye world")
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading..." : "We are ready"}</div>
   }
   //3.2 
   //life cycle
@@ -41,6 +23,40 @@ class App extends React.Component {
   // counstructor (JS)
   //2. updating
   //3. unmounting : component die
+
+  // state = {
+  //   count: 0
+  // }
+  // render() {
+  //   console.log("i'm rendering")
+  //   return <div>
+  //     <h1>The number is :  {this.state.count}</h1>
+  //     <button onClick={this.add}>add</button>
+  //     {/*this.add() : 즉시 실행 , this.add  : 클릭했을때만 실행  */}
+  //     <button onClick={this.minus}>minus</button>
+  //   </div>
+  // }
+
+  // add = () => {
+  //   console.log("Add");
+  //   // this.setState({ count: this.state.count + 1 })
+  //   this.setState(current => ({ count: current.count + 1 }))
+
+  // };
+  // minus = () => {
+  //   console.log("minus");
+  //   this.setState(current => ({ count: current.count - 1 }))
+  // };
+  // componentDidMount() {
+  //   console.log("component rendered")
+  // }
+  // componentDidUpdate() {
+  //   console.log(" i just updated ")
+  // }
+  // componentWillUnmount() {
+  //   console.log("good bye world")
+  // }
+
 
   // 3.1
   // render method 상속받아서 사용
