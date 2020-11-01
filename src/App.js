@@ -7,6 +7,7 @@ class App extends React.Component {
     count: 0
   }
   render() {
+    console.log("i'm rendering")
     return <div>
       <h1>The number is :  {this.state.count}</h1>
       <button onClick={this.add}>add</button>
@@ -25,7 +26,23 @@ class App extends React.Component {
     console.log("minus");
     this.setState(current => ({ count: current.count - 1 }))
   };
+  componentDidMount() {
+    console.log("component rendered")
+  }
+  componentDidUpdate() {
+    console.log(" i just updated ")
+  }
+  componentWillUnmount() {
+    console.log("good bye world")
+  }
+  //3.2 
+  //life cycle
+  //1. mounting  : being born
+  // counstructor (JS)
+  //2. updating
+  //3. unmounting : component die
 
+  // 3.1
   // render method 상속받아서 사용
   //function component , class component가 있음
   // react class commponent의 render method를 실행함
@@ -33,6 +50,7 @@ class App extends React.Component {
   // 리액트는 render function을 refresh 하지 않음
   //setState 하면 state update하고 render function refresh
   // everytime you call setstate , react is going to  rerender 
+
 }
 
 
