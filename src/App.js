@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+import Movie from "./Movies";
 
 // #3.1
 class App extends React.Component {
@@ -7,15 +9,48 @@ class App extends React.Component {
   state = {
     isLoading: true,
     movies: []
-  }
+  };
+
+  getMovies = async () => {
+    const {
+      data: {
+        data: { movies }
+      }
+    } = await axios.get("https://yts-proxy.nomadcoders1.now.sh/list_movies.json/sort-by=rating");
+    this.setState({ movies, isLoading: false })     // movies : movies
+    console.log(movies)
+  };
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ isLoading: false, })
+      this.setState({ isLoading: false });
+
     }, 6000);
-  }
+    this.getMovies();
+  };
   render() {
-    const { isLoading } = this.state;
-    return <div>{isLoading ? "Loading..." : "We are ready"}</div>
+    const { isLoading, movies } = this.state;
+    return (
+      <section class="container">
+        {isLoading ? (
+          <div class="loader">
+            <span class="loader_text">Loading...</span>
+          </div>
+        ) : (
+            <div class="movies">
+              { movies.map(movie => (
+                <Movie key={movie.id}
+                  id={movie.id}
+                  year={movie.year}
+                  title={movie.title}
+                  summary={movie.summary}
+                  poster={movie.medium_cover_image}
+                  genres={movie.genres}
+                />
+              ))}
+            </div>
+          )}
+      </section>
+    )
   }
   //3.2 
   //life cycle
