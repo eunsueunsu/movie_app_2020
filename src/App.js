@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Movie from "./Movies";
+import "./App.css"
 
 // #3.1
 class App extends React.Component {
@@ -30,13 +31,13 @@ class App extends React.Component {
   render() {
     const { isLoading, movies } = this.state;
     return (
-      <section class="container">
+      <section className="container">
         {isLoading ? (
-          <div class="loader">
-            <span class="loader_text">Loading...</span>
+          <div className="loader">
+            <span className="loader_text">Loading...</span>
           </div>
         ) : (
-            <div class="movies">
+            <div className="movies">
               { movies.map(movie => (
                 <Movie key={movie.id}
                   id={movie.id}
@@ -52,7 +53,7 @@ class App extends React.Component {
       </section>
     )
   }
-  //3.2 
+  //3.2
   //life cycle
   //1. mounting  : being born
   // counstructor (JS)
@@ -100,7 +101,7 @@ class App extends React.Component {
   // c c 가 state를 갖고 있음 object , data를 넣을 공간을 가짐 ( 동적 data )
   // 리액트는 render function을 refresh 하지 않음
   //setState 하면 state update하고 render function refresh
-  // everytime you call setstate , react is going to  rerender 
+  // everytime you call setstate , react is going to  rerender
 
 }
 
